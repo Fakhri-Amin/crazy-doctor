@@ -14,6 +14,7 @@ public class VillagerController : MonoBehaviour
         Zombie
     }
 
+    private PlayerMovement player;
     private NavMeshAgent navMeshAgent;
     private State state;
 
@@ -31,7 +32,7 @@ public class VillagerController : MonoBehaviour
 
     private void Update()
     {
-        PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
+        player = FindAnyObjectByType<PlayerMovement>();
         switch (state)
         {
             case State.Villager:
@@ -40,11 +41,26 @@ public class VillagerController : MonoBehaviour
                 navMeshAgent.SetDestination(player.transform.position);
                 break;
         }
+        Flip();
     }
 
     public void SetStateToZombie()
     {
         spriteRenderer.sprite = zombieSprite;
         state = State.Zombie;
+    }
+
+    public void Flip()
+    {
+        if (player.transform.position.x < transform.position.x)
+        {
+            // enemyVisual.transform.localScale = new Vector3(-1, 1, 1);
+            spriteRenderer.flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+            // enemyVisual.transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 }
