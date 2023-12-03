@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class VillagerController : MonoBehaviour
 {
@@ -13,20 +14,30 @@ public class VillagerController : MonoBehaviour
         Zombie
     }
 
+    private NavMeshAgent navMeshAgent;
     private State state;
+
+    private void Awake()
+    {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+    }
 
     private void Start()
     {
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
         state = State.Villager;
     }
 
     private void Update()
     {
+        PlayerMovement player = FindAnyObjectByType<PlayerMovement>();
         switch (state)
         {
             case State.Villager:
                 break;
             case State.Zombie:
+                navMeshAgent.SetDestination(player.transform.position);
                 break;
         }
     }
