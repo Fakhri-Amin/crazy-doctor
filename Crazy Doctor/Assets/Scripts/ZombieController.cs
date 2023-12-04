@@ -76,7 +76,6 @@ public class ZombieController : MonoBehaviour
         Collider2D[] overlapZombies = Physics2D.OverlapCircleAll(transform.position, viewDistance, targetLayerMask);
 
         if (overlapZombies.Length == 0) return;
-        Debug.Log(overlapZombies.Length);
 
         foreach (Collider2D obj in overlapZombies)
         {

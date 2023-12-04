@@ -14,7 +14,7 @@ TagManager:
   - Player
   - Zombie
   - Obstacle
-  - 
+  - Bullet
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3771731025
+    locked: 0
+  - name: UI
+    uniqueID: 2345263003
     locked: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 // using CodeMonkey.HealthSystemCM;
 using Unity.VisualScripting;
 using UnityEngine;
-// using MoreMountains.Feedbacks;
+using MoreMountains.Feedbacks;
 
 public class VillagerRangeWeapon : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class VillagerRangeWeapon : MonoBehaviour
     [SerializeField] private Transform shootPoint;
     [SerializeField] private float viewDistance = 20f;
     [SerializeField] private LayerMask targetLayerMask;
-    // [SerializeField] private MMFeedbacks shootingSFX;
+    [SerializeField] private MMFeedbacks shootFeedbacks;
 
     private Vector3 targetPosition = new(0, 0);
     private Transform closestTarget;
@@ -90,6 +90,7 @@ public class VillagerRangeWeapon : MonoBehaviour
         GameObject bulletTransform = Instantiate(weaponSO.bulletPrefab, shootPoint.position, shootPoint.rotation);
         _ = bulletTransform.TryGetComponent(out Bullet bullet);
         bullet.Setup(shootPoint.transform.right, weaponSO.damage, weaponSO.bulletMoveSpeed, Bullet.Source.Villager);
+        shootFeedbacks.PlayFeedbacks();
 
         // shootingSFX.PlayFeedbacks();
     }

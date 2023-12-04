@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-// using CodeMonkey.HealthSystemCM;
+using CodeMonkey.HealthSystemCM;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -35,10 +35,10 @@ public class Bullet : MonoBehaviour
         if (other.GetComponent<VillagerController>() && source == Source.Villager) return;
         if (other.GetComponent<PlayerMovement>() && source == Source.Player) return;
 
-        // if (HealthSystem.TryGetHealthSystem(other.gameObject, out HealthSystem healthSystem, true))
-        // {
-        //     healthSystem.Damage(damage);
-        // }
+        if (HealthSystem.TryGetHealthSystem(other.gameObject, out HealthSystem healthSystem, true))
+        {
+            healthSystem.Damage(damage);
+        }
 
         Destroy(gameObject);
     }

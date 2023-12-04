@@ -109,7 +109,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd11413b533b474eaa8646493e9357e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombiePrefab: {fileID: 6605493577761915583, guid: 0265e068394a9b1468996d6dc2b3a287, type: 3}
+  zombiePrefabs:
+  - {fileID: 6605493577761915583, guid: 0265e068394a9b1468996d6dc2b3a287, type: 3}
+  - {fileID: 6605493577761915583, guid: 331aaf8bc79cf9a40a1d470103bdfea0, type: 3}
+  - {fileID: 6605493577761915583, guid: 2b757de03cd8d6f4e90afeb85dbdfa43, type: 3}
+  getHitFeedbacks: {fileID: 0}
+  isBoss: 0
 --- !u!1 &5689217404887108412
 GameObject:
   m_ObjectHideFlags: 0
