@@ -6,14 +6,32 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public event Action<bool> OnSpaceHit;
+
     public static InputManager Instance;
     private PlayerInputActions playerInputActions;
+    private bool isSpaceHit = false;
 
     private void Awake()
     {
         Instance = this;
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
+
+    }
+
+    private void Start()
+    {
+        OnSpaceHit?.Invoke(isSpaceHit);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isSpaceHit = !isSpaceHit;
+            OnSpaceHit?.Invoke(isSpaceHit);
+        }
     }
 
     private void OnDestroy()

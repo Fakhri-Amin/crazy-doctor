@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class VillagerCollisionManager : MonoBehaviour
 {
-    private VillagerController villagerController;
-
-    private void Awake()
-    {
-        villagerController = GetComponent<VillagerController>();
-    }
+    [SerializeField] private GameObject zombiePrefab;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<WeaponController>(out WeaponController controller))
+        if (other.TryGetComponent<WeaponController>(out WeaponController weapon))
         {
-            villagerController.SetStateToZombie();
+            Instantiate(zombiePrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.TryGetComponent<ZombieController>(out ZombieController zombie))
+        {
+            Instantiate(zombiePrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }
